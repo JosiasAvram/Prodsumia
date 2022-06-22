@@ -1,5 +1,5 @@
 import logo from '../../src/imagenes/logo.png'
-import cart from '../../src/imagenes/cart.png'
+import Cart from './CartWidget'
 //import'./NavBar.css'
 
 const NavBar = () => {
@@ -8,11 +8,11 @@ const NavBar = () => {
         <img style = {styles.logo} src={logo} alt="" />
         <h1 style = {styles.titulo}>PC Prodsumia</h1>
         <nav style = {styles.navBar}>
-            <a style = {styles.anchors} href="">Categoria 1</a>
-            <a style = {styles.anchors} href="">Categoria 2</a>
-            <a style = {styles.anchors} href="">Categoria 3</a>
+            <a style = {styles.anchors} href="#">Categoria 1</a>
+            <a style = {styles.anchors} href="#">Categoria 2</a>
+            <a style = {styles.anchors} href="#">Categoria 3</a>
         </nav>
-        <img style = {styles.carrito} src={cart} alt="" />
+        <Cart /> 
         </header>
     )
 }
