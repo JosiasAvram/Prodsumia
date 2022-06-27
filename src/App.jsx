@@ -1,13 +1,15 @@
 import React from 'react';
 import NavBar from './components/NavBar'
 import './App.css';
-import ItemList from './components/ItemList';
+import ItemListContainer from './components/ItemListContainer';
 
 const App = () => {
   return (
     <>
     <NavBar />
-    <ItemList />
+    <ItemListContainer 
+      proximamente = 'Proximamente, aquí estara el catalogo de la tienda'
+    />
     </>
   );
 }
