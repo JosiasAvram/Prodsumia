@@ -7,9 +7,8 @@ const App = () => {
   return (
     <>
     <NavBar />
-    <ItemListContainer 
-      proximamente = 'Proximamente, aquí estara el catalogo de la tienda'
-    />
+    <h1 className = 'text-3xl font-bold mt-5 ml-5 text-center'>Catálago de Productos</h1>
+    <ItemListContainer />
     </>
   );
 }
