@@ -1,10 +1,15 @@
-const ItemList = () => {
+import React from "react"
+import Item from "./Item"
+
+
+const ItemList = ({stockDeProductos}) => {
     return (
-        <>
-        <h1>Proximamente, aquí estara el catalogo de la tienda</h1>
-        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae porro dolorem nostrum quasi doloribus nisi consequuntur aspernatur cupiditate facilis, in alias dignissimos molestias culpa maiores quas! Ab doloribus natus repudiandae.</h3>
-        </>
-    )
+        <div className = 'flex flex-wrap justify-around mt-5'>    
+            {stockDeProductos.map((producto) => {
+                return <Item key={producto.id} producto = {producto}/>;
+            })}
+        </div>
+    );
 }
 
 export default ItemList
