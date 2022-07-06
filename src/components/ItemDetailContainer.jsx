@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import stockDeProductos from "../data/descripcionDeProductos";
-import ItemList from "./ItemList";
+import ItemDetail from "./ItemDetail";
 
 
 const promesa = new Promise((res, rej) => {
@@ -9,7 +9,7 @@ const promesa = new Promise((res, rej) => {
     }, 2000);
 });
 
-const ItemListontainer = ({greeting}) => {
+const ItemDetailContainer = ({greeting}) => {
     const [listaDeProductos, setListaDeProductos] = useState([]);
     const [loading, setLoading] = useState(false);
    
@@ -25,9 +25,9 @@ const ItemListontainer = ({greeting}) => {
         <>
             <h1>{greeting}</h1>
             {loading ? <p className = 'text-3xl font-bold mt-5 ml-5 text-center'>Cargando...</p> : <p></p> }
-            <ItemList stockDeProductos = {listaDeProductos} />
+            <ItemDetail stockDeProductos = {listaDeProductos} />
         </>
     )
 }
 
-export default ItemListontainer
+export default ItemDetailContainer
