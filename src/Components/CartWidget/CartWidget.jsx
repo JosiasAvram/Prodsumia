@@ -4,7 +4,8 @@ import { FaShoppingCart } from 'react-icons/fa'
 const CartWidget = () => {
     return(
         <button className='hover:bg-teal-900 p-4 '>
-        <FaShoppingCart className='text-white ' size={40}/>            
+        <FaShoppingCart className='text-white ' size={40}/>
+        <p></p>            
         </button>
     )
 }

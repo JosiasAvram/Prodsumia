@@ -15,7 +15,7 @@ const promesa = new Promise((res, rej) => {
 
 const ItemDetailsContainer = ({greeting}) => {
     const {itemId} = useParams()
-    const [producto, setProducto] = useState([]);
+    const [item, setProducto] = useState([]);
     const [loading, setLoading] = useState(false);
    
     useEffect(() => {
@@ -33,7 +33,7 @@ const ItemDetailsContainer = ({greeting}) => {
             <h1 className = 'text-3xl font-bold mt-5 ml-5 text-center'>Detalle del Producto</h1>
 
             <div>
-                {loading ? <LoadingSpin /> : <ItemDetail producto = {producto} /> }
+                {loading ? <LoadingSpin /> : <ItemDetail item = {item} /> }
             </div>
             
         </>

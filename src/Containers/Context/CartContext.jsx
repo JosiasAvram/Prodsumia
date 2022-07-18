@@ -1,63 +1,63 @@
-import React, { createContext, useState, useEffect} from 'react'
+import React, { createContext, useState } from 'react'
 
-export const CartContext = createContext();
+export const CartContext = createContext([]);
 const { Provider } = CartContext;
 
-const CartCustomProvider = ({children}) => {
+const CartProvider = ({children}) => {
   const [cart, setCart] = useState([]);
-  const [totalProducts, setCantidadDeElementos] = useState(0);
-  // const [totalPrice, setTotalPrice] = useState(0)
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0)
   
-  const isInCart = (id) => {
-    return cart.some(producto => producto.id === id);
+  const isInCart = (item) => {
+    return cart.some((prod) => prod.id === item.id);
   }
   
-  const getQtyProduct = () => {
-    let qty = 0;
-    cart.forEach(producto => {qty += producto.qty})
-    setCantidadDeElementos(qty);  
-  }
-
-  useEffect(() => {
-    getQtyProduct()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart])
-
-
-  const addToCart = (producto) => {
-    if (isInCart(producto.id)){
-      const found = cart.find(p => p.id === producto.id);
-      console.log(`este es el found ${found}`);
-      const index = cart.indexOf(found)
-      console.log(`este es el index ${index}`);
-      const aux = [...cart]
-      console.log(`este es el aux ${aux}`);
-      found[index].qty += cart.qty
-      setCart(aux)
-      console.log(`este es el productCart nuevo ${cart}`);
+  const addToCart = (item, quantity) => {
+    if (isInCart(item.id)){
+      //si ya esxiste en el carrito
+      let newCart = [...cart]
+      const productAdded = newCart.find((prod) => prod.id === item.id);
+      const productAddedIndex = newCart.indexOf(productAdded)
+      //busco la posicion del producto existente
+      productAdded[productAddedIndex].quantity += parseInt(quantity) 
+      setCart(newCart)
+      
     }
     else {
-      setCart([...cart, producto])
+      //si no existía en el carrito
+      let newProductAdded = { ...item };
+      newProductAdded.quantity = parseInt(quantity);
+      let newCart = [...cart, newProductAdded]
+      setCart(newCart)
     }
+    const totalProductPrice = item.price * quantity;
+    setTotalPrice(totalPrice + totalProductPrice);
+
+    setTotalProducts(totalProducts + quantity);
   }
 
-  const removeItemFromCart = (id) => {
-    setCart(cart.filter(producto => producto.id !== id))
-    
+  const removeItemFromCart = (id, precio, quantity) => {
+    //eliminar de a un producto
+    const newCart = cart.filter((item) => item.id !== id)
+    setCart(newCart);
+    setTotalPrice(totalPrice - precio * quantity);
+    setTotalProducts(totalProducts - quantity)
   }
 
-  const clearCart = () => {
-    setCart([])
-    getQtyProduct(0);
+  const cleanCart = () => {
+    //eliminar todos los productos
+    setCart([]);
+    setTotalPrice(0);
+    setTotalProducts(0);
   }
 
 
 
   return (
-    <Provider value={{cart, addToCart, removeItemFromCart, clearCart, totalProducts}}>
+    <Provider value={{cleanCart, removeItemFromCart, addToCart, cart, totalProducts, totalPrice}}>
       {children}
     </Provider>
   )
 }
 
-export default CartCustomProvider
+export default CartProvider
