@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import stockDeProductos from "../../data/descripcionDeProductos";
 import ItemDetail from '../ItemDetailsContainer/ItemDetail';
 import { useParams } from "react-router-dom";
+import LoadingSpin from "../../Components/LoadingSpin/LoadingSpin";
 
 
 
@@ -29,9 +30,12 @@ const ItemDetailsContainer = ({greeting}) => {
 
     return (
         <>
-            <h2>{greeting}</h2>
-            {loading ? <p className = 'text-3xl font-bold mt-5 ml-5 text-center'>Cargando...</p> : <p></p> }
-            <ItemDetail producto = {producto} />
+            <h1 className = 'text-3xl font-bold mt-5 ml-5 text-center'>Detalle del Producto</h1>
+
+            <div>
+                {loading ? <LoadingSpin /> : <ItemDetail producto = {producto} /> }
+            </div>
+            
         </>
     )
 }

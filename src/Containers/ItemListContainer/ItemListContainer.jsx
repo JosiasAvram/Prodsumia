@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import LoadingSpin from "../../Components/LoadingSpin/LoadingSpin";
 import stockDeProductos from '../../data/descripcionDeProductos'
 import ItemList from "./ItemList";
 
@@ -26,8 +27,9 @@ const ItemListContainer = ({greeting}) => {
         <>
             <h1 className = 'text-3xl font-bold mt-5 ml-5 text-center'>Catálago de Productos</h1>
 
-            <h2>{greeting}</h2>
-            {loading ? <p className = 'text-3xl font-bold mt-5 ml-5 text-center'>Cargando...</p> : <p></p> }
+            <div>
+                {loading ? <LoadingSpin/> : <></> }
+            </div>
             <ItemList  stockDeProductos = {listaDeProductos} />
         </>
     )
