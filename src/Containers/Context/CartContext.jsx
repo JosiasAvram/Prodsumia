@@ -1,63 +1,67 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect} from 'react'
 
-export const CartContext = createContext([]);
+export const CartContext = createContext();
 const { Provider } = CartContext;
 
-const CartProvider = ({children}) => {
-  const [cart, setCart] = useState([]);
+const CartCustomProvider = ({children}) => {
+  const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0)
+  const [precioTotal, setPrecioTotal] = useState(0)
+  // const [totalPrecioDelProductoEnviado, setTotalPrecioDelProductoEnviado] = useState(0)
+
   
-  const isInCart = (item) => {
-    return cart.some((prod) => prod.id === item.id);
+  const isInCart = (id) => {
+    return products.some((prod) => prod.id === id);
   }
   
-  const addToCart = (item, quantity) => {
-    if (isInCart(item.id)){
-      //si ya esxiste en el carrito
-      let newCart = [...cart]
-      const productAdded = newCart.find((prod) => prod.id === item.id);
-      const productAddedIndex = newCart.indexOf(productAdded)
-      //busco la posicion del producto existente
-      productAdded[productAddedIndex].quantity += parseInt(quantity) 
-      setCart(newCart)
-      
+  const getQtyProduct = () => {
+    let qty = 0;
+    products.forEach(product => {qty += product.quantity})
+    setTotalProducts(qty);  
+  }
+  useEffect(() => {
+    getQtyProduct()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [products])
+
+  const addToCart = (product) => {
+      if (isInCart(product.id)){
+        let newCart = [...products]
+        const productAdded = newCart.find((prod) => prod.id === product.id);
+        const productAddedIndex = newCart.indexOf(productAdded)
+        newCart[productAddedIndex].quantity =
+        newCart[productAddedIndex].quantity + parseInt(product.quantity);
+        setProducts(newCart)
     }
     else {
-      //si no existía en el carrito
-      let newProductAdded = { ...item };
-      newProductAdded.quantity = parseInt(quantity);
-      let newCart = [...cart, newProductAdded]
-      setCart(newCart)
+      setProducts([...products, product])
     }
-    const totalProductPrice = item.price * quantity;
-    setTotalPrice(totalPrice + totalProductPrice);
+    const totalProductPrice = product.precio * product.quantity;
+    
+    setPrecioTotal(precioTotal + totalProductPrice);
+    setTotalProducts(totalProducts + product.quantity);
 
-    setTotalProducts(totalProducts + quantity);
   }
 
-  const removeItemFromCart = (id, precio, quantity) => {
-    //eliminar de a un producto
-    const newCart = cart.filter((item) => item.id !== id)
-    setCart(newCart);
-    setTotalPrice(totalPrice - precio * quantity);
-    setTotalProducts(totalProducts - quantity)
+  const removeItemFromCart = (product) => {
+    // setProducts(products.filter(product => product.id !== id))
+     const newCart = products.filter((prod) => prod.id !== product.id)
+     setProducts(newCart);
+     setPrecioTotal(precioTotal - product.precio * product.quantity);
+     setTotalProducts(totalProducts - product.quantity)
   }
 
-  const cleanCart = () => {
-    //eliminar todos los productos
-    setCart([]);
-    setTotalPrice(0);
+  const clearCart = () => {
+    setProducts([])
+    setPrecioTotal(0);
     setTotalProducts(0);
   }
 
-
-
   return (
-    <Provider value={{cleanCart, removeItemFromCart, addToCart, cart, totalProducts, totalPrice}}>
+    <Provider value={{products, addToCart, removeItemFromCart, clearCart, totalProducts, precioTotal}}>
       {children}
     </Provider>
   )
 }
 
-export default CartProvider
+export default CartCustomProvider
