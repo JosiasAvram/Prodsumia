@@ -1,12 +1,16 @@
-import React from 'react'
-import { FaShoppingCart } from 'react-icons/fa'
+import React, { useContext } from "react";
+import { FaShoppingCart } from "react-icons/fa";
+import { CartContext } from '../../Containers/Context/CartContext';
 
 const CartWidget = () => {
-    return(
-        <button className='hover:bg-teal-900 p-4 '>
-        <FaShoppingCart className='text-white ' size={40}/>
-        <p></p>            
-        </button>
-    )
-}
-export default CartWidget
+  const { totalProducts } = useContext(CartContext);
+
+  return (
+ 
+    <button className="flex  hover:bg-teal-900 p-4 ">
+      <FaShoppingCart className="text-white mr-5" size={40} />
+      <p className="text-4xl text-white">{totalProducts}</p>
+    </button>
+  );
+};
+export default CartWidget;

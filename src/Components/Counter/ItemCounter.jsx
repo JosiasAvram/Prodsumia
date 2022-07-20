@@ -23,7 +23,7 @@ const ItemCounter = ({stock, onAdd, initial, }) => {
             </div>
             <button 
             className='border-2 border-slate-900 bg-teal-900 hover:bg-teal-800 py-3 text-white p-10 rounded-md ' 
-            onClick={onAdd} value = {quantity}
+            onClick={onAdd} value={quantity}
             >
                     Agregar Al Carrito
             </button>
