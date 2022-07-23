@@ -1,15 +1,13 @@
-import React from 'react'
-import { Spin } from '@douyinfe/semi-ui'
-
+import React from "react";
+import { Spin } from "@douyinfe/semi-ui";
 
 const LoadingSpin = () => {
-return (
+  return (
     <div>
-        <Spin size = "large" />
-        <p>Loading...</p>
+      <Spin size="large" />
+      <p>Loading...</p>
     </div>
-  )
-}
+  );
+};
 
-
-export default LoadingSpin
+export default LoadingSpin;
