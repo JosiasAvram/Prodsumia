@@ -12,14 +12,14 @@ const NavBar = () => {
       <div className="flex justify-center items-center bg-teal-700 py-3">
         <div className=" flex w-11/12 justify-between items-center">
             <Link to="/">
-                <img className="hover:bg-teal-900 h-24 w-28" src={logo} alt="" />
+                <img className="hover:bg-teal-900 h-24 w-28 rounded-xl" src={logo} alt="" />
             </Link>
             <h1 className=" text-white font-semibold text-3xl">PC Prodsumia</h1>
 
             <nav className="flex gap-6 cursor-pointer text-white font-semibold">
                 {categories.map((category) => (
                 <Link
-                    className="hover:bg-teal-900 p-5 text-xl"
+                    className="hover:bg-teal-900 p-5 text-xl rounded-xl"
                     Key={category.id}
                     to={category.route}
                 >

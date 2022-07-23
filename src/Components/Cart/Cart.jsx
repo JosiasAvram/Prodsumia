@@ -9,16 +9,28 @@ const Cart = () => {
   return (
     <>
       {products.length === 0 ? (
-        <h1 className = 'text-3xl font-bold mt-5 ml-5 text-center'>
+        <div>
+        <h1 className = 'text-4xl font-bold my-20 ml-5 text-center'>
           No hay productos en el Carrito, sigue comprando
           <Link className="text-blue-700" to="/products"> aquí</Link>
         </h1>
+            <div className="bg-teal-700 text-white rounded-xl border flex justify-between font-serif text-4xl mt-5 text-center mx-96 p-5">
+            Total de la Compra
+            <div className="flex">
+              <button>
+                <BsTrash className="mr-5" onClick={clearCart} />
+              </button>
+              <div>Vaciar Carrito</div>
+            </div>
+            <div>$ {precioTotal}</div>
+          </div>
+        </div>
       ) : (
         <>
-          <div className="mt-20">
+          <div className="mt-5">
             {products.map((product) => (
               <div
-                className="bg-teal-700 text-white rounded-xl border flex justify-between font-serif text-4xl mt-5 text-center mx-80 p-5"
+                className="bg-teal-700 text-white rounded-xl border flex justify-between font-serif text-4xl mt-5 text-center mx-60 p-5"
                 key={product.id}
               >
                 <img className = 'w-12 rounded-md' src = {product.img} alt="imágen del Producto" />
@@ -27,7 +39,7 @@ const Cart = () => {
                 <div className="px-10">
                   <button
                     className="text-4xl border rounded-2xl px-4 mr-4"
-                    onClick={removeItemFromCart}
+                    onClick={() => removeItemFromCart(product)}
                   >
                     -
                   </button>
@@ -38,7 +50,7 @@ const Cart = () => {
                 </div>
               </div>
             ))}
-            <div className="bg-teal-700 text-white rounded-xl border flex justify-between font-serif text-4xl mt-5 text-center mx-80 p-5">
+            <div className="bg-teal-700 text-white rounded-xl border flex justify-between font-serif text-4xl mt-5 text-center mx-96 p-5">
               Total de la Compra
               <div className="flex">
                 <button>

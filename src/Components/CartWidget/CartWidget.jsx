@@ -7,7 +7,7 @@ const CartWidget = () => {
 
   return (
  
-    <button className="flex  hover:bg-teal-900 p-4 ">
+    <button className="flex  hover:bg-teal-900 p-4 rounded-xl">
       <FaShoppingCart className="text-white mr-5" size={40} />
       <p className="text-4xl text-white">{totalProducts}</p>
     </button>

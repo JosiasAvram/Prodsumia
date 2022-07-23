@@ -22,7 +22,6 @@ const ItemDetail = ({product}) => {
   
   return (
     <>
-    <h1 className = 'text-3xl font-bold mt-5 ml-5 text-center'>Detalle del Producto</h1>
     <div className = 'flex justify-around bg-teal-700 rounded-lg text-white p-10 m-5'>
       <img className = 'w-96 rounded-md' src = {product.img} alt="imágen del Producto" />
       <div className = 'text-center'>
