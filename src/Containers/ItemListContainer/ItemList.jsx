@@ -4,7 +4,7 @@ import Item from "./Item"
 
 const ItemList = ({stockDeProductos}) => {
     return (
-        <div className = 'flex flex-wrap justify-around mt-5'>
+        <div className = 'flex flex-wrap justify-around'>
             {stockDeProductos.map((product) => (
                 <Item 
                     key = {product.id} 

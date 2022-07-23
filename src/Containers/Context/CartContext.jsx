@@ -7,8 +7,6 @@ const CartCustomProvider = ({children}) => {
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [precioTotal, setPrecioTotal] = useState(0)
-  // const [totalPrecioDelProductoEnviado, setTotalPrecioDelProductoEnviado] = useState(0)
-
   
   const isInCart = (id) => {
     return products.some((prod) => prod.id === id);
@@ -32,24 +30,23 @@ const CartCustomProvider = ({children}) => {
         newCart[productAddedIndex].quantity =
         newCart[productAddedIndex].quantity + parseInt(product.quantity);
         setProducts(newCart)
-    }
-    else {
-      setProducts([...products, product])
-    }
-    const totalProductPrice = product.precio * product.quantity;
-    
-    setPrecioTotal(precioTotal + totalProductPrice);
+      } 
+      else {
+        setProducts([...products, product])
+      }
+
+    // const totalProductPrice = product.precio * product.quantity;
+    setPrecioTotal(precioTotal + (product.precio * product.quantity));
     setTotalProducts(totalProducts + product.quantity);
 
   }
-
+  
   const removeItemFromCart = (product) => {
-    // setProducts(products.filter(product => product.id !== id))
-     const newCart = products.filter((prod) => prod.id !== product.id)
-     setProducts(newCart);
-     setPrecioTotal(precioTotal - product.precio * product.quantity);
-     setTotalProducts(totalProducts - product.quantity)
-  }
+    const newCart = products.filter(prod => prod.id !== product.id)
+    setProducts(newCart)
+    setPrecioTotal(precioTotal - (product.precio * product.quantity));
+    setTotalProducts(totalProducts - product.quantity)
+    }
 
   const clearCart = () => {
     setProducts([])

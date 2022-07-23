@@ -10,7 +10,7 @@ const promesa = new Promise((res, rej) => {
     }, 2000);
 });
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
 
     const [listaDeProductos, setListaDeProductos] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ const ItemListContainer = ({ greeting }) => {
 
     return (
         <>
-            <h1 className = 'text-3xl font-bold mt-5 ml-5 text-center'>Catálago de Productos</h1>
+            <h1 className = 'text-5xl font-bold mt-10 ml-5 text-center'>Catálago de Productos</h1>
 
             <div className="flex justify-center items-center mt-10">
                 {loading ? <LoadingSpin /> : <></> }
