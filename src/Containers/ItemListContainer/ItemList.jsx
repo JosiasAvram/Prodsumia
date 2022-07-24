@@ -1,10 +1,10 @@
 import React from "react";
 import Item from "./Item";
 
-const ItemList = ({ stockDeProductos }) => {
+const ItemList = ({ products }) => {
   return (
     <div className="flex flex-wrap justify-around">
-      {stockDeProductos.map((product) => (
+      {products.map((product) => (
         <Item key={product.id} product={product} />
       ))}
     </div>

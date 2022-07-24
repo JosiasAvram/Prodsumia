@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
 import LoadingSpin from "../../Components/LoadingSpin/LoadingSpin";
-import stockDeProductos from "../../data/descripcionDeProductos";
 import ItemList from "./ItemList";
-
-const promesa = new Promise((res, rej) => {
-  setTimeout(() => {
-    res(stockDeProductos);
-  }, 2000);
-});
+import { db } from "../../firebase/firebase";
+import { getDocs, collection } from "firebase/firestore";
 
 const ItemListContainer = () => {
-  const [listaDeProductos, setListaDeProductos] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [loaded, setLoaded] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    promesa.then((response) => {
-      setLoading(false);
-      setListaDeProductos(response);
-    });
+    const productCollection = collection(db, 'productos');
+    getDocs(productCollection).then(result => {
+      const lista = result.docs.map(doc => {
+        return {
+            id: doc.id,
+            ...doc.data(),
+        }
+      })
+      setProducts(lista)
+    })
+    .catch(err => console.log(err))
+    .finally(() => setLoaded(false))
   }, []);
 
   return (
@@ -28,9 +30,9 @@ const ItemListContainer = () => {
       </h1>
 
       <div className="flex justify-center items-center mt-10">
-        {loading ? <LoadingSpin /> : <></>}
+        {loaded ? <LoadingSpin /> : <ItemList products={products} />}
       </div>
-      <ItemList stockDeProductos={listaDeProductos} />
+      
     </>
   );
 };
