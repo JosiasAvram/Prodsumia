@@ -5,8 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 const messagerepeated = () => {
   toast.success("Cantidad del producto modificada", {
     position: "top-center",
-    autoClose: 2000,
-    hideProgressBar: false,
+    autoClose: 1000,
+    hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: false,
     draggable: false,
@@ -17,8 +17,8 @@ const messagerepeated = () => {
 const messageAdd = () => {
   toast.success("Producto Agregado Al carrito", {
     position: "top-center",
-    autoClose: 2000,
-    hideProgressBar: false,
+    autoClose: 1000,
+    hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: false,
     draggable: false,
@@ -29,8 +29,8 @@ const messageAdd = () => {
 const messageRemove = () => {
   toast.success("Producto eliminado del carrito", {
     position: "top-center",
-    autoClose: 2000,
-    hideProgressBar: false,
+    autoClose: 1000,
+    hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: false,
     draggable: false,
@@ -41,8 +41,8 @@ const messageRemove = () => {
 const messageClear = () => {
   toast.success("El Carrito se vació exitosamente", {
     position: "top-center",
-    autoClose: 2000,
-    hideProgressBar: false,
+    autoClose: 1000,
+    hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: false,
     draggable: false,
@@ -52,8 +52,8 @@ const messageClear = () => {
 const messageEmpty = () => {
   toast.warn("El Carrito esta Vacío", {
     position: "top-center",
-    autoClose: 2000,
-    hideProgressBar: false,
+    autoClose: 1000,
+    hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: false,
     draggable: false,
