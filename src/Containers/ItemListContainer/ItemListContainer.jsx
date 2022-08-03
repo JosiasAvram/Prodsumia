@@ -9,18 +9,19 @@ const ItemListContainer = () => {
   const [loaded, setLoaded] = useState(true);
 
   useEffect(() => {
-    const productCollection = collection(db, 'productos');
-    getDocs(productCollection).then(result => {
-      const lista = result.docs.map(doc => {
-        return {
+    const productCollection = collection(db, "productos");
+    getDocs(productCollection)
+      .then((result) => {
+        const lista = result.docs.map((doc) => {
+          return {
             id: doc.id,
             ...doc.data(),
-        }
+          };
+        });
+        setProducts(lista);
       })
-      setProducts(lista)
-    })
-    .catch(err => console.log(err))
-    .finally(() => setLoaded(false))
+      .catch((err) => console.log(err))
+      .finally(() => setLoaded(false));
   }, []);
 
   return (
@@ -32,7 +33,6 @@ const ItemListContainer = () => {
       <div className="flex justify-center items-center mt-10">
         {loaded ? <LoadingSpin /> : <ItemList products={products} />}
       </div>
-      
     </>
   );
 };

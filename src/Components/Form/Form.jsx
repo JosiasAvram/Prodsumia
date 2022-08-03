@@ -18,7 +18,7 @@ const Form = ({ Pagar }) => {
 
   const cobrar = () => {
     if (nombre === "" || apellido === "" || telefono === "" || email === "") {
-      return
+      return;
     } else {
       Pagar(datos).then(navigate("/products"));
     }
@@ -84,14 +84,7 @@ const Form = ({ Pagar }) => {
             >
               Pagar
             </button>
-            {/* {pagoRealizado ? <Link to={"/products"}>Pagar</Link> : <></>} */}
           </div>
-          {/* 
-                <p>{nombre}</p><br />
-                <p>{apellido}</p><br />
-                <p>{telefono}</p><br />
-                <p>{email}</p><br /> 
-                */}
         </form>
       </div>
     </>

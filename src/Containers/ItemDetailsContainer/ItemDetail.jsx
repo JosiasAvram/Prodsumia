@@ -12,8 +12,6 @@ const ItemDetail = ({ product }) => {
     setShowComponent(false);
     setQuantity(e.target.value);
     let quantity = parseInt(e.target.value);
-    // console.log(product);
-    // console.log("cantidad de unidades que se agregan al carrito con onAdd",quantity);
     addToCart({ ...product, quantity });
   };
 

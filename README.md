@@ -1,37 +1,12 @@
-# Titulo h1
+# PC Prodsumia
 
-## Titulo h2
+Esta es una App donde el usuario puede ingresar y comprar los elementos necesarios para su PC.
 
-### Titulo h3
+`Estas son las herramientas que utilice para realizar la App:`
 
-los parrafos se escriben sin nada
+- React
+- React-icons
+- Toastify
+- Firebase
 
-Tipos de litas:
-
-* objeto
-* objeto
-* objeto
-
-
-1. objeto
-2. objeto
-3. objeto
-
-```Texto con estilo de fondo```
-
-links
-
-
-
->otro texto
-
-[ir a Google](www.google.com)
-
-**texto en negritas**
-
-![un mensaje si la imagen no se muestra](./src/assets/logo.png)
-
-
-
-
-
+`Vamos a ver la App` [ir a PC Prodsumia](https://rad-babka-241448.netlify.app/)

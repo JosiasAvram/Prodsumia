@@ -9,9 +9,7 @@ import { Link } from "react-router-dom";
 import { BsTrash } from "react-icons/bs";
 
 const Cart = () => {
-  const { products, clearCart, precioTotal } =
-    useContext(CartContext);
-
+  const { products, clearCart, precioTotal } = useContext(CartContext);
 
   const finalizarCompra = async (datos) => {
     const ventasCollection = collection(db, "ventas");
@@ -40,41 +38,39 @@ const Cart = () => {
 
   return (
     <>
-      {products.length > 0 ? 
-      ( <CartCheckout finalizarCompra = {finalizarCompra} /> ) 
-      : 
-      (
+      {products.length > 0 ? (
+        <CartCheckout finalizarCompra={finalizarCompra} />
+      ) : (
         <div>
-        <div className="bg-teal-900 text-white rounded-xl border flex justify-between font-serif text-4xl mt-5 text-center mx-60 p-5">
+          <div className="bg-teal-900 text-white rounded-xl border flex justify-between font-serif text-4xl mt-5 text-center mx-60 p-5">
             <div>Imagen</div>
             <div>Producto</div>
             <div>Precio</div>
             <div>Eliminar</div>
             <div>Cantidad</div>
             <div>Total</div>
-        </div>
+          </div>
 
-        <h1 className="text-4xl font-bold my-20 ml-5 text-center">
+          <h1 className="text-4xl font-bold my-20 ml-5 text-center">
             No hay productos en el Carrito, sigue comprando
             <Link className="text-blue-700 hover:underline" to="/products">
-            {" "}
-            aquí
+              {" "}
+              aquí
             </Link>
-        </h1>
-        <div className="bg-teal-900 text-white rounded-xl border flex justify-between font-serif text-4xl mt-5 text-center mx-96 p-5">
+          </h1>
+          <div className="bg-teal-900 text-white rounded-xl border flex justify-between font-serif text-4xl mt-5 text-center mx-96 p-5">
             Total de la Compra
             <div className="flex">
-            <button>
+              <button>
                 <BsTrash className="mr-5" onClick={clearCart} />
-            </button>
-            <div>Vaciar Carrito</div>
+              </button>
+              <div>Vaciar Carrito</div>
             </div>
             <div>$ {precioTotal}</div>
-        </div>
+          </div>
         </div>
       )}
       <ToastContainer />
-      
     </>
   );
 };

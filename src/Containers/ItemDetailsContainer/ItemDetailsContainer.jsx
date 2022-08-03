@@ -12,14 +12,15 @@ const ItemDetailsContainer = () => {
   const [loaded, setLoaded] = useState(true);
 
   useEffect(() => {
-    const productCollection = collection(db, 'productos');
+    const productCollection = collection(db, "productos");
     const refDoc = doc(productCollection, itemId);
-    getDoc(refDoc).then(result => {
+    getDoc(refDoc)
+      .then((result) => {
         const product = {
-            id: result.id,
-            ...result.data(),
-        }
-        setProduct(product)
+          id: result.id,
+          ...result.data(),
+        };
+        setProduct(product);
       })
       .catch((err) => console.log(err))
       .finally(() => setLoaded(false));
